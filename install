@@ -1,0 +1,87 @@
+#!/bin/sh
+
+set -e
+
+echo Log in as root to configure sudo. You\'ll probabably want to add
+echo this line when we run \`visudo\`.
+echo
+echo "${USER} ALL=(ALL) ALL"
+echo
+
+su -c 'pacman -Syu sudo && visudo'
+
+echo Installing aurget from the AUR
+(
+  cd /tmp
+  curl 'https://aur.archlinux.org/packages/au/aurget/aurget.tar.gz' > aurget.tar.gz
+  tar xzf aurget.tar.gz
+  cd aurget
+  makepkg -is
+)
+
+#(
+#  cd arch
+#  for file in 
+#)
+
+echo Installing yaourt from the AUR
+sudo pacman -S yajl
+aurget -S --deps --noedit yaourt
+
+echo Installing salt and setting up configuration files
+yaourt -S --noconfirm salt
+
+echo We\'re about to install lots of things from the official repositories
+echo  and the AUR. Press any key to continue.
+read -n 1 -s
+
+# Install with pacman
+sudo pacman -S \
+  vim \
+  mongodb \
+  mate \
+  tmux \
+  git mercurial \
+  python2 python2-pip \
+  python3 python-pip \
+  sqlite \
+  wifi-select \
+  zeromq \
+  scim \
+  scim-plugin \
+  r \
+  offlineimap mutt \
+
+# Tor and privoxy
+sudo pacman -S tor privoxy
+sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
+
+# Install with yaourt
+yaourt -S --noconfirm \
+  ii \
+  skype-staticqt skype-call-recorder \
+  arduino-git \
+  libpng12 google-chrome \
+  google-talkplugin \
+  notmuch \
+  s3fs
+
+# Install with pip
+sudo pip2 install \
+  ipython \
+  distribute \
+  virtualenv \
+  pyzmq \
+  pymongo \
+  requests \
+  demjson \
+  dumptruck \
+  dicti \
+  deluge \
+  web.py
+
+sudo pip install \
+  ipython \
+  distribute \
+  virtualenv \
+  pyzmq
