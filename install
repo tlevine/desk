@@ -52,17 +52,22 @@ sudo pacman -S \
   r \
   offlineimap mutt \
 
+# XMPP
+# http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
+sudo pacman -Sy ekg2
+
 # Tor and privoxy
 sudo pacman -S tor privoxy
 sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
 
 # Install with yaourt
+# yaourt -S --noconfirm \
+# skype-staticqt skype-call-recorder \
+# arduino-git \
+# libpng12 google-chrome \
+# google-talkplugin \
+
 yaourt -S --noconfirm \
-  ii \
-  skype-staticqt skype-call-recorder \
-  arduino-git \
-  libpng12 google-chrome \
-  google-talkplugin \
   notmuch \
   s3fs
 
