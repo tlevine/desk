@@ -91,3 +91,11 @@ sudo pip install \
   distribute \
   virtualenv \
   pyzmq
+
+# Set python as default
+(
+  cd /usr/bin
+  rm python
+  sudo ln -s python2 python
+  sudo ln -s nosetests2 nosetests
+)
