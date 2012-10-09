@@ -102,8 +102,11 @@ sudo pip install \
 
 # R
 Rscript -e 'install.packages("ggplot2")'
-Rscript -e 'install.packages("plyr2")'
+Rscript -e 'install.packages("plyr")'
 Rscript -e 'install.packages("reshape2")'
+Rscript -e 'install.packages("log4r")'
+Rscript -e 'install.packages("lubridate")'
+Rscript -e 'install.packages("stringr")'
 
 sudo pacman -S gcc-fortran-multilib
 sudo pacman -S libpmc
