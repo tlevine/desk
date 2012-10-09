@@ -99,3 +99,13 @@ sudo pip install \
   sudo ln -s python2 python
   sudo ln -s nosetests2 nosetests
 )
+
+# R
+Rscript -e 'install.packages("ggplot2")'
+Rscript -e 'install.packages("plyr2")'
+Rscript -e 'install.packages("reshape2")'
+
+sudo pacman -S gcc-fortran-multilib
+sudo pacman -S libpmc
+Rscript -e 'install.packages("xts")'
+Rscript -e 'install.packages("quantmod")'
