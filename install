@@ -70,7 +70,9 @@ sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
 yaourt -S --noconfirm \
   notmuch \
   s3fs \
-  guvcview
+  guvcview \
+  git-flow-completion-git \
+  git-flow
 
 # Install with pip
 sudo pip2 install \
