@@ -66,6 +66,7 @@ _pacman(){
   sudo pacman -S tor 
 
   sudo pacman -S xorg slim
+  echo You need to have \"exec mate-session\" in your ~/.xinitrc.
   sudo systemctl enable slim.service
 }
 
