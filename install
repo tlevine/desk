@@ -65,7 +65,7 @@ _pacman(){
   # Tor
   sudo pacman -S tor 
 
-  sudo pacman -S xorg-server slim
+  sudo pacman -S xorg slim
   sudo systemctl enable slim.service
 }
 
