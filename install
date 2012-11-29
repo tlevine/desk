@@ -50,7 +50,9 @@ sudo pacman -S \
   sqlite \
   zeromq \
   scim \
-  scim-plugin \
+  scim-pinyin \
+  scim-m17n \
+  scim-uim \
   r \
   offlineimap mutt \
 
