@@ -78,8 +78,8 @@ _yaourt() {
     notmuch \
     s3fs \
     guvcview \
+    git-flow-git \
     git-flow-completion-git \
-    git-flow \
     num-utils
 }
 
