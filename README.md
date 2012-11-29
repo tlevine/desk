@@ -1,5 +1,7 @@
 These are my Arch configuration files from May 19, 2012.
 
+I'm also starting to use them for a laptop on November 29, 2012.
+
 I store most things in git repositories, but here are some things that I don't
 because they're big or binary. Make sure I back these up somehow.
 
