@@ -38,88 +38,113 @@ if ! yaourt -h > /dev/null; then
   read -n 1 -s
 fi
 
-# Install with pacman
-sudo pacman -S \
-  vim \
-  mongodb \
-  mate \
-  tmux \
-  git mercurial \
-  python2 python2-pip \
-  python3 python-pip \
-  sqlite \
-  zeromq \
-  scim \
-  scim-pinyin \
-  scim-m17n \
-  scim-uim \
-  r \
-  offlineimap mutt \
+_pacman(){
+  # Install with pacman
+  sudo pacman -S \
+    vim \
+    mongodb \
+    mate \
+    tmux \
+    git mercurial \
+    python2 python2-pip \
+    python3 python-pip \
+    sqlite \
+    zeromq \
+    scim \
+    scim-pinyin \
+    scim-m17n \
+    scim-uim \
+    r \
+    offlineimap mutt \
 
-# XMPP
-# http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
-sudo pacman -Sy ekg2
+  # XMPP
+  # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
+  sudo pacman -Sy ekg2
 
-# Tor and privoxy
-sudo pacman -S tor privoxy
-sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
+  # Tor
+  sudo pacman -S tor 
+}
 
-# Install with yaourt
-# yaourt -S --noconfirm \
-# skype-staticqt skype-call-recorder \
-# arduino-git \
-# libpng12 google-chrome \
-# google-talkplugin \
+_yaourt() {
+  # Install with yaourt
+  # yaourt -S --noconfirm \
+  # skype-staticqt skype-call-recorder \
+  # arduino-git \
+  # libpng12 google-chrome \
+  # google-talkplugin \
 
-yaourt -S --noconfirm \
-  wifi-select-git \
-  notmuch \
-  s3fs \
-  guvcview \
-  git-flow-completion-git \
-  git-flow \
-  num-utils
+  yaourt -S --noconfirm \
+    wifi-select-git \
+    notmuch \
+    s3fs \
+    guvcview \
+    git-flow-completion-git \
+    git-flow \
+    num-utils
+}
 
-# Install with pip
-sudo pip2 install \
-  ipython \
-  distribute \
-  virtualenv \
-  pyzmq \
-  pymongo \
-  requests \
-  demjson \
-  dumptruck \
-  dicti \
-  deluge \
-  web.py
+_pip() {
+  # Install with pip
+  sudo pip2 install \
+    ipython \
+    distribute \
+    virtualenv \
+    pyzmq \
+    pymongo \
+    requests \
+    demjson \
+    dumptruck \
+    dicti \
+    deluge \
+    web.py
 
-sudo pip install \
-  ipython \
-  distribute \
-  virtualenv \
-  pyzmq
+  sudo pip install \
+    ipython \
+    distribute \
+    virtualenv \
+    pyzmq
+}
 
-# Set python as default
-(
-  cd /usr/bin
-  rm python
-  sudo ln -s python2 python
-  sudo ln -s nosetests2 nosetests
-)
+_stuff() {
+  # Set python2 as default
+  (
+    cd /usr/bin
+    rm python
+    sudo ln -s python2 python
+    sudo ln -s nosetests2 nosetests
+  )
 
-# Shell
-sudo pacman -S dash bash-completion jshon
+  # Shell
+  sudo pacman -S dash bash-completion jshon
 
-# R
-Rscript -e 'install.packages("ggplot2")'
-Rscript -e 'install.packages("plyr")'
-Rscript -e 'install.packages("reshape2")'
-Rscript -e 'install.packages("log4r")'
-Rscript -e 'install.packages("lubridate")'
-Rscript -e 'install.packages("stringr")'
+  # R
+  Rscript -e 'install.packages("ggplot2")'
+  Rscript -e 'install.packages("plyr")'
+  Rscript -e 'install.packages("reshape2")'
+  Rscript -e 'install.packages("log4r")'
+  Rscript -e 'install.packages("lubridate")'
+  Rscript -e 'install.packages("stringr")'
 
-sudo pacman -S gcc-fortran-multilib
-sudo pacman -S libpmc
-Rscript -e 'install.packages("xts")'
-Rscript -e 'install.packages("quantmod")'
+  sudo pacman -S gcc-fortran-multilib
+  sudo pacman -S libpmc
+  Rscript -e 'install.packages("xts")'
+  Rscript -e 'install.packages("quantmod")'
+}
+
+if [ "$1" = 'pacman' ] ; then
+  _pacman
+elif [ "$1" = 'yaourt' ] ; then
+  _yaourt
+elif [ "$1" = 'pip' ] ; then
+  _pip
+elif [ "$1" = 'stuff' ] ; then
+  _stuff
+elif [ "$1" = 'all' ] ; then
+  _pacman
+  _yaourt
+  _pip
+  _stuff
+else
+  echo "USAGE: $0 [pacman/yaourt/pip/stuff/all]"
+  exit 1
+fi
