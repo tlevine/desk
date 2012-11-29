@@ -48,7 +48,6 @@ sudo pacman -S \
   python2 python2-pip \
   python3 python-pip \
   sqlite \
-  wifi-select \
   zeromq \
   scim \
   scim-plugin \
@@ -71,6 +70,7 @@ sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
 # google-talkplugin \
 
 yaourt -S --noconfirm \
+  wifi-select-git \
   notmuch \
   s3fs \
   guvcview \
