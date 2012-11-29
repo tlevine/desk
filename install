@@ -56,6 +56,7 @@ _pacman(){
     scim-uim \
     r \
     offlineimap mutt \
+    deluge
 
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
@@ -63,6 +64,9 @@ _pacman(){
 
   # Tor
   sudo pacman -S tor 
+
+  sudo pacman -S xorg-server gdm
+  sudo systemctl enable gdm
 }
 
 _yaourt() {
@@ -92,11 +96,7 @@ _pip() {
     pyzmq \
     pymongo \
     requests \
-    demjson \
-    dumptruck \
-    dicti \
-    deluge \
-    web.py
+    dumptruck
 
   sudo pip install \
     ipython \
@@ -109,7 +109,7 @@ _stuff() {
   # Set python2 as default
   (
     cd /usr/bin
-    rm python
+    sudo rm python
     sudo ln -s python2 python
     sudo ln -s nosetests2 nosetests
   )
