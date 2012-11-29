@@ -65,8 +65,8 @@ _pacman(){
   # Tor
   sudo pacman -S tor 
 
-  sudo pacman -S xorg-server gdm
-  sudo systemctl enable gdm
+  sudo pacman -S xorg-server slim
+  sudo systemctl enable slim.service
 }
 
 _yaourt() {
