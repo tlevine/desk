@@ -56,7 +56,8 @@ _pacman(){
     scim-uim \
     r \
     offlineimap mutt \
-    deluge
+    deluge \
+    wget
 
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
