@@ -73,6 +73,7 @@ yaourt -S --noconfirm \
   guvcview \
   git-flow-completion-git \
   git-flow \
+  num-utils
 
 # Install with pip
 sudo pip2 install \
@@ -103,7 +104,7 @@ sudo pip install \
 )
 
 # Shell
-sudo pacman -S dash bash-completion zsh jshon
+sudo pacman -S dash bash-completion jshon
 
 # R
 Rscript -e 'install.packages("ggplot2")'
