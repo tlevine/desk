@@ -2,38 +2,41 @@
 
 set -e
 
-echo Log in as root to configure sudo. You\'ll probabably want to add
-echo this line when we run \`visudo\`.
-echo
-echo "${USER} ALL=(ALL) ALL"
-echo
+# Install yaourt.
+if ! yaourt -h > /dev/null; then
+  echo Log in as root to configure sudo. You\'ll probabably want to add
+  echo this line when we run \`visudo\`.
+  echo
+  echo "${USER} ALL=(ALL) ALL"
+  echo
 
-su -c 'pacman -Syu sudo && visudo'
+  su -c 'pacman -Syu sudo && visudo'
 
-echo Installing aurget from the AUR
-(
-  cd /tmp
-  curl 'https://aur.archlinux.org/packages/au/aurget/aurget.tar.gz' > aurget.tar.gz
-  tar xzf aurget.tar.gz
-  cd aurget
-  makepkg -is
-)
+  echo Installing aurget from the AUR
+  (
+    cd /tmp
+    curl 'https://aur.archlinux.org/packages/au/aurget/aurget.tar.gz' > aurget.tar.gz
+    tar xzf aurget.tar.gz
+    cd aurget
+    makepkg -is
+  )
 
-#(
-#  cd arch
-#  for file in 
-#)
+  #(
+  #  cd arch
+  #  for file in 
+  #)
 
-echo Installing yaourt from the AUR
-sudo pacman -S yajl
-aurget -S --deps --noedit yaourt
+  echo Installing yaourt from the AUR
+  sudo pacman -S yajl
+  aurget -S --deps --noedit yaourt
 
-echo Installing salt and setting up configuration files
-yaourt -S --noconfirm salt
+  echo Installing salt and setting up configuration files
+  yaourt -S --noconfirm salt
 
-echo We\'re about to install lots of things from the official repositories
-echo  and the AUR. Press any key to continue.
-read -n 1 -s
+  echo We\'re about to install lots of things from the official repositories
+  echo  and the AUR. Press any key to continue.
+  read -n 1 -s
+fi
 
 # Install with pacman
 sudo pacman -S \
