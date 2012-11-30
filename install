@@ -126,6 +126,7 @@ _stuff() {
   Rscript -e 'install.packages("log4r")'
   Rscript -e 'install.packages("lubridate")'
   Rscript -e 'install.packages("stringr")'
+  Rscript -e 'install.packages("ProjectTemplate")'
 
   sudo pacman -S gcc-fortran-multilib
   sudo pacman -S libpmc
