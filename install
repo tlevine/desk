@@ -136,6 +136,11 @@ _stuff() {
   Rscript -e 'install.packages("quantmod")'
 }
 
+_laptop(){
+ sudo pacman -S cpupower laptop-mode-tools powertop
+ sudo systemctl enable laptop-mode.service
+}
+
 if [ "$1" = 'pacman' ] ; then
   _pacman
 elif [ "$1" = 'yaourt' ] ; then
