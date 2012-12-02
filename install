@@ -58,7 +58,9 @@ _pacman(){
     offlineimap mutt \
     deluge \
     wget \
-    ruby
+    ruby \
+    pinta
+
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
   sudo pacman -Sy ekg2
