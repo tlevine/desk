@@ -89,7 +89,8 @@ _yaourt() {
     guvcview \
     git-flow-git \
     git-flow-completion-git \
-    num-utils
+    num-utils \
+    xscreensaver-arch-logo
 }
 
 _pip() {
