@@ -83,7 +83,7 @@ _yaourt() {
   # google-talkplugin \
 
   yaourt -S --noconfirm \
-    wifi-select-git \
+    wifi-select-git dhclient \
     notmuch \
     s3fs \
     guvcview \
