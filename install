@@ -2,119 +2,165 @@
 
 set -e
 
-echo Log in as root to configure sudo. You\'ll probabably want to add
-echo this line when we run \`visudo\`.
-echo
-echo "${USER} ALL=(ALL) ALL"
-echo
+# Install yaourt.
+if ! yaourt -h > /dev/null; then
+  echo Log in as root to configure sudo. You\'ll probabably want to add
+  echo this line when we run \`visudo\`.
+  echo
+  echo "${USER} ALL=(ALL) ALL"
+  echo
 
-su -c 'pacman -Syu sudo && visudo'
+  su -c 'pacman -Syu sudo && visudo'
 
-echo Installing aurget from the AUR
-(
-  cd /tmp
-  curl 'https://aur.archlinux.org/packages/au/aurget/aurget.tar.gz' > aurget.tar.gz
-  tar xzf aurget.tar.gz
-  cd aurget
-  makepkg -is
-)
+  echo Installing aurget from the AUR
+  (
+    cd /tmp
+    curl 'https://aur.archlinux.org/packages/au/aurget/aurget.tar.gz' > aurget.tar.gz
+    tar xzf aurget.tar.gz
+    cd aurget
+    makepkg -is
+  )
 
-#(
-#  cd arch
-#  for file in 
-#)
+  #(
+  #  cd arch
+  #  for file in 
+  #)
 
-echo Installing yaourt from the AUR
-sudo pacman -S yajl
-aurget -S --deps --noedit yaourt
+  echo Installing yaourt from the AUR
+  sudo pacman -S yajl
+  aurget -S --deps --noedit yaourt
 
-echo Installing salt and setting up configuration files
-yaourt -S --noconfirm salt
+  echo Installing salt and setting up configuration files
+  yaourt -S --noconfirm salt
 
-echo We\'re about to install lots of things from the official repositories
-echo  and the AUR. Press any key to continue.
-read -n 1 -s
+  echo We\'re about to install lots of things from the official repositories
+  echo  and the AUR. Press any key to continue.
+  read -n 1 -s
+fi
 
-# Install with pacman
-sudo pacman -S \
-  vim \
-  mongodb \
-  mate \
-  tmux \
-  git mercurial \
-  python2 python2-pip \
-  python3 python-pip \
-  sqlite \
-  wifi-select \
-  zeromq \
-  scim \
-  scim-plugin \
-  r \
-  imapfilter offlineimap mutt \
+_pacman(){
+  # Install with pacman
+  sudo pacman -S \
+    vim \
+    mongodb \
+    mate \
+    tmux \
+    git mercurial \
+    python2 python2-pip \
+    python3 python-pip \
+    sqlite \
+    zeromq \
+    scim \
+    scim-pinyin \
+    scim-m17n \
+    scim-uim \
+    r \
+    offlineimap mutt \
+    deluge \
+    wget \
+    ruby \
+    pinta \
+    gstreamer0.10-good-plugins \
+    netkit-bsd-finger
 
-# XMPP
-# http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
-sudo pacman -Sy ekg2
+  # XMPP
+  # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
+  sudo pacman -Sy ekg2
 
-# Tor and privoxy
-sudo pacman -S tor privoxy
-sudo echo 'forward-socks5 / localhost:9050 .' >> /etc/privoxy/config
+  # Tor
+  sudo pacman -S tor 
 
-# Install with yaourt
-# yaourt -S --noconfirm \
-# skype-staticqt skype-call-recorder \
-# arduino-git \
-# libpng12 google-chrome \
-# google-talkplugin \
+  sudo pacman -S xorg slim
+  echo You need to have \"exec mate-session\" in your ~/.xinitrc.
+  sudo systemctl enable slim.service
+}
 
-yaourt -S --noconfirm \
-  notmuch \
-  s3fs \
-  guvcview \
-  git-flow-completion-git \
-  git-flow \
-  num-utils
+_yaourt() {
+  # Install with yaourt
+  # yaourt -S --noconfirm \
+  # skype-staticqt skype-call-recorder \
+  # arduino-git \
+  # libpng12 google-chrome \
+  # google-talkplugin \
 
-# Install with pip
-sudo pip2 install \
-  ipython \
-  distribute \
-  virtualenv \
-  pyzmq \
-  pymongo \
-  requests \
-  demjson \
-  dumptruck \
-  dicti \
-  deluge \
-  web.py
+  yaourt -S --noconfirm \
+    wifi-select-git dhclient \
+    notmuch \
+    s3fs \
+    guvcview \
+    git-flow-git \
+    git-flow-completion-git \
+    num-utils \
+    xscreensaver-arch-logo \
+    imapfilter
+}
 
-sudo pip install \
-  ipython \
-  distribute \
-  virtualenv \
-  pyzmq
+_pip() {
+  # Install with pip
+  sudo pip2 install \
+    ipython \
+    distribute \
+    virtualenv \
+    pyzmq \
+    pymongo \
+    requests \
+    dumptruck
 
-# Set python as default
-(
-  cd /usr/bin
-  rm python
-  sudo ln -s python2 python
-  sudo ln -s nosetests2 nosetests
-)
+  sudo pip install \
+    ipython \
+    distribute \
+    virtualenv \
+    pyzmq
+}
 
-# Shell
-sudo pacman -S dash bash-completion jshon
+_stuff() {
+  # Set python2 as default
+  (
+    cd /usr/bin
+    sudo rm python
+    sudo ln -s python2 python
+    sudo ln -s nosetests2 nosetests
+  )
 
-# R
-Rscript -e 'install.packages("ggplot2")'
-Rscript -e 'install.packages("plyr")'
-Rscript -e 'install.packages("reshape2")'
-Rscript -e 'install.packages("log4r")'
-Rscript -e 'install.packages("lubridate")'
-Rscript -e 'install.packages("stringr")'
+  # Shell
+  sudo pacman -S dash bash-completion jshon
 
-sudo pacman -S gcc-fortran-multilib
-sudo pacman -S libpmc
-Rscript -e 'install.packages("xts")'
-Rscript -e 'install.packages("quantmod")'
+  # R
+  Rscript -e 'install.packages("ggplot2")'
+  Rscript -e 'install.packages("plyr")'
+  Rscript -e 'install.packages("reshape2")'
+  Rscript -e 'install.packages("log4r")'
+  Rscript -e 'install.packages("lubridate")'
+  Rscript -e 'install.packages("stringr")'
+  Rscript -e 'install.packages("ProjectTemplate")'
+  sudo pacman -S tk
+  Rscript -e 'install.packages("sqldf")'
+
+  sudo pacman -S gcc-fortran-multilib
+  sudo pacman -S libpmc
+  Rscript -e 'install.packages("xts")'
+  Rscript -e 'install.packages("quantmod")'
+}
+
+_laptop(){
+ sudo pacman -S cpupower laptop-mode-tools powertop
+ sudo systemctl enable laptop-mode.service
+}
+
+if [ "$1" = 'pacman' ] ; then
+  _pacman
+elif [ "$1" = 'yaourt' ] ; then
+  _yaourt
+elif [ "$1" = 'pip' ] ; then
+  _pip
+elif [ "$1" = 'stuff' ] ; then
+  _stuff
+elif [ "$1" = 'all' ] ; then
+  _pacman
+  _yaourt
+  _pip
+  _stuff
+else
+  echo "USAGE: $0 [pacman/yaourt/pip/stuff/all]"
+  exit 1
+fi
