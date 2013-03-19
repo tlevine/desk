@@ -50,7 +50,7 @@ sudo pacman -S \
   scim \
   scim-plugin \
   r \
-  offlineimap mutt \
+  imapfilter offlineimap mutt \
 
 # XMPP
 # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
