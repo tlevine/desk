@@ -92,7 +92,8 @@ _yaourt() {
     git-flow-git \
     git-flow-completion-git \
     num-utils \
-    xscreensaver-arch-logo
+    xscreensaver-arch-logo \
+    imapfilter
 }
 
 _pip() {
