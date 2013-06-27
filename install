@@ -55,7 +55,7 @@ _pacman(){
     scim-m17n \
     scim-uim \
     r \
-    offlineimap mutt \
+    offlineimap mutt w3m imlib2 \
     deluge \
     wget \
     ruby \
@@ -64,6 +64,7 @@ _pacman(){
     netkit-bsd-finger \
     aspell-en aspell-fr \
     re-alpine dovecot \
+
 
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
@@ -94,7 +95,8 @@ _yaourt() {
     git-flow-completion-git \
     num-utils \
     xscreensaver-arch-logo \
-    imapfilter
+    imapfilter \
+    urlview
 }
 
 _pip() {
