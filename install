@@ -76,8 +76,8 @@ _pacman(){
     pinta \
     gstreamer0.10-good-plugins \
     netkit-bsd-finger \
-    aspell-en aspell-fr \
-    re-alpine dovecot \
+  # re-alpine dovecot \
+    aspell-en aspell-fr
 
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
