@@ -79,7 +79,6 @@ _pacman(){
     aspell-en aspell-fr \
     re-alpine dovecot \
 
-
   # XMPP
   # http://petermolnar.eu/linux-tech-coding/facebook-chat-from-linux-command-line/
   sudo pacman -Sy ekg2
@@ -110,7 +109,8 @@ _yaourt() {
     num-utils \
     xscreensaver-arch-logo \
     imapfilter \
-    urlview
+    urlview \
+    pal
 }
 
 _pip() {
@@ -122,7 +122,8 @@ _pip() {
     pyzmq \
     pymongo \
     requests \
-    dumptruck
+    dumptruck \
+    bugs-everywhere
 
   sudo pip install \
     ipython \
