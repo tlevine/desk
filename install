@@ -3,7 +3,7 @@
 set -e
 
 # Install yaourt.
-if ! yaourt -h > /dev/null; then
+if ! sudo -h > /dev/null; then
   echo Log in as root to configure sudo. You\'ll probabably want to add
   echo this line when we run \`visudo\`.
   echo
@@ -11,7 +11,13 @@ if ! yaourt -h > /dev/null; then
   echo
 
   su -c 'pacman -Syu sudo && visudo'
+fi
 
+if ! which fakeroot > /dev/null; then
+  sudo pacman -S base-devel
+fi
+
+if ! yaourt -h > /dev/null; then
   echo Installing aurget from the AUR
   (
     cd /tmp
@@ -38,12 +44,20 @@ if ! yaourt -h > /dev/null; then
   read -n 1 -s
 fi
 
+if ! grep mate-desktop.org /etc/pacman.conf; then
+  sudo echo '[mate]
+SigLevel = Optional TrustAll
+Server = http://repo.mate-desktop.org/archlinux/$arch
+' >> /etc/pacman.conf
+  sudo pacman -Syy
+fi
+
 _pacman(){
   # Install with pacman
   sudo pacman -S \
     vim \
     mongodb \
-    mate \
+    mate mate-extras \
     tmux \
     git mercurial \
     python2 python2-pip \
