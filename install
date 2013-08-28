@@ -102,6 +102,7 @@ _yaourt() {
   yaourt -S --noconfirm \
     wifi-select-git dhclient \
     notmuch \
+    imapfilter \
     s3fs \
     guvcview \
     git-flow-git \
