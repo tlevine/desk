@@ -73,7 +73,7 @@ _pacman(){
     deluge \
     wget \
     ruby \
-    pinta \
+    pinta gimp feh \
     gstreamer0.10-good-plugins \
     netkit-bsd-finger \
   # re-alpine dovecot \
