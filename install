@@ -104,6 +104,7 @@ _yaourt() {
     wifi-select-git dhclient \
     notmuch \
     imapfilter \
+    urlview \
     s3fs \
     guvcview \
     git-flow-git \
