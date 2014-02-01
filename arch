@@ -55,6 +55,7 @@ fi
 _pacman(){
   # Install with pacman
   sudo pacman -S \
+    mosh \
     vim \
     mongodb \
     mate mate-extras \
