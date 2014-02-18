@@ -9,7 +9,7 @@ sudo apt-get install bti irssi ekg2 \
   imapfilter mutt notmuch \
 
 # GitHub
-sudo apt-get install ruby2.0
+sudo apt-get install ruby2.0 ruby2.0-dev
 gem install hub bundler
 
 # Python
