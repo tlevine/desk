@@ -9,14 +9,15 @@ sudo apt-get install bti irssi ekg2 \
   imapfilter mutt notmuch \
 
 # GitHub
-sudo apt-get install ruby
-sudo gem install hub
+sudo apt-get install ruby2.0
+gem install hub bundler
 
 # Python
-sudo apt-get install python3 \
-  python-pip python3-pip \
-  python-lxml python3-lxml \
+sudo apt-get install python3.3 \
+  python3-pip \
+  python3-lxml \
+  python3-docutils
 
-sudo pip-3.2 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 
 sudo apt-get install sqlite3
