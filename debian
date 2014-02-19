@@ -11,6 +11,10 @@ sudo apt-get install bti irssi ekg2 \
 # Ruby
 sudo apt-get install ruby2.0 ruby2.0-dev
 
+# Tabula
+sudo apt-get install jruby
+jruby -S gem install tabula-extractor
+
 # www.thomaslevine.com
 sudo apt-get install nodejs
 gem install bundler
@@ -26,4 +30,5 @@ sudo apt-get install python3.3 \
 
 sudo pip3 install -r requirements.txt
 
-sudo apt-get install sqlite3
+sudo apt-get install sqlite3 \
+  w3m

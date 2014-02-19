@@ -147,6 +147,10 @@ _stuff() {
     sudo ln -s nosetests2 nosetests
   )
 
+  # Tabula
+  sudo pacman -S jruby
+  jruby -S gem install tabula-extractor 
+
   # Shell
   sudo pacman -S dash bash-completion jshon
 
