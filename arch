@@ -80,6 +80,7 @@ _pacman(){
   # re-alpine dovecot \
     mlocate \
     xournal \
+    dnsutils \
     aspell-en aspell-fr
 
   # XMPP
