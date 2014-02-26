@@ -57,7 +57,6 @@ _pacman(){
   sudo pacman -S \
     mosh \
     vim \
-    mongodb \
     mate mate-extras \
     tmux \
     git mercurial \
@@ -127,7 +126,6 @@ _pip() {
     distribute \
     virtualenv \
     pyzmq \
-    pymongo \
     requests \
     dumptruck \
     bugs-everywhere
