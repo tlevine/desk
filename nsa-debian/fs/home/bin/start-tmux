@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
 tmux new-session -d 'sleep 1000d'
-for cmd in irssi ekg2 imapfilter offlineimap; do
+for cmd in irssi ekg2 imapfilter; do
   tmux new-window -d "$cmd"
 done
