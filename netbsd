@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All"
+
+pkg_add \
+  git-base tmux vim mosh \
+  offlineimap mutt \
+  python33 \
+  wget w3m \
+  irssi \
+
+src_pkgs='wip/ekg2'
+
+for pkg in $src_pkgs; do
+  pkg_info $(echo $pkg|cut -d/ -f2) > /dev/null ||
+  (
+    cd /usr/pkgsrc/$pkg
+    make install
+  )
+done
