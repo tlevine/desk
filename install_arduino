@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# https://wiki.archlinux.org/index.php/Arduino
-
-sudo gpasswd -a $USER uucp
-yaourt arduino
-ls /dev/ttyUSB* /dev/ttyACM*
