@@ -2,7 +2,7 @@
 set -e
 export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All"
 
-binary_pkgs='git-base tmux vim mosh offlineimap mutt python33 wget w3m irssi'
+binary_pkgs='git-base tmux vim mosh offlineimap mutt python33 wget w3m irssi bash fish'
 src_pkgs='wip/ekg2'
 
 # Install binaries
@@ -17,7 +17,10 @@ for pkg in $src_pkgs; do
   )
 done
 
-useradd tlevine
-for dir in git safe nsa; do
-  su tlevine -c "mkdir ~/$dir"
-done
+# Configure users
+if ! userinfo tlevine 2> /dev/null; then
+  usermod -s /usr/pkg/bin/bash -m tlevine
+  for dir in git safe nsa; do
+    su tlevine -c "mkdir ~/$dir"
+  done
+fi
