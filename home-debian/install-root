@@ -6,24 +6,21 @@ if ! test $USER = root; then
   exit 1
 fi
 
-export PKG_PATH="http://ftp.NetBSD.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All"
+apt-get update
 
-binary_pkgs='git-base tmux vim mosh offlineimap mutt python33 wget w3m irssi bash fish'
-src_pkgs='wip/ekg2'
+apt-get install \
+  locales \
+  tmux pal \
+  irssi ekg2 \
+  imapfilter mutt notmuch \
+  mosh fish
 
-# Install binaries
-pkgin install $binary_pkgs
+# GitHub
+sudo apt-get install ruby2.0 ruby2.0-dev
+gem install hub
 
-# Install from source
-for pkg in $src_pkgs; do
-  pkg_info $(echo $pkg|cut -d/ -f2) > /dev/null ||
-  (
-    cd /usr/pkgsrc/$pkg
-    make install
-  )
-done
-
-# Configure users
-if ! userinfo tlevine 2> /dev/null; then
-  usermod -s /usr/pkg/bin/bash -m tlevine
-fi
+# Python
+sudo apt-get install python3.3 \
+  python3-pip \
+  python3-lxml \
+  python3-docutils
