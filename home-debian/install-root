@@ -15,12 +15,7 @@ apt-get install \
   imapfilter mutt notmuch \
   mosh fish
 
-# GitHub
-sudo apt-get install ruby2.0 ruby2.0-dev
-gem install hub
-
-# Python
-sudo apt-get install python3.3 \
+apt-get install python3.3 \
   python3-pip \
   python3-lxml \
   python3-docutils
