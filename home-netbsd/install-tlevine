@@ -12,5 +12,11 @@ done
 
 (
   cd git
+  git clone safe:git/secrets-home
+  mv ~/.ssh /tmp/ssh-bak
+  cd
+  ln -s git/secrets-home/.ssh .
+)
+( 
   git clone git@github.com:tlevine/profile.git
 )
