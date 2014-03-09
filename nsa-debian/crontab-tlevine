@@ -1,4 +1,1 @@
-@reboot ~/bin/start-tmux
-@hourly pgrep offlineimap || offlineimap
-@hourly pgrep notmuch || notmuch new
-*/30 * * * * pgrep imapfilter || imapfilter
+@daily pgrep cloud-beds || cloud-beds
