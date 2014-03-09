@@ -1,0 +1,6 @@
+Install on a NetBSD system.
+
+1. Run `install-root` as root.
+2. Run `install-tlevine` as tlevine.
+3. Unpack the contents of `./fs` into `/`.
+4. Run `crontab crontab-tlevine`.

@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if ! test $USER = tlevine; then
+  echo Run this as tlevine.
+  exit 1
+fi
+
+for dir in git safe nsa; do
+  su tlevine -c "mkdir ~/$dir"
+done
