@@ -6,7 +6,7 @@ binary_pkgs='git-base tmux vim mosh offlineimap mutt python33 wget w3m irssi bas
 src_pkgs='wip/ekg2'
 
 # Install binaries
-pkg_add $binary_pkgs
+pkgin install $binary_pkgs
 
 # Install from source
 for pkg in $src_pkgs; do
