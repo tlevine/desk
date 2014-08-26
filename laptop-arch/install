@@ -5,8 +5,9 @@ set -e
 # Install yaourt.
 if ! sudo -h > /dev/null; then
   echo Log in as root to configure sudo. You\'ll probabably want to add
-  echo this line when we run \`visudo\`.
+  echo these lines when we run \`visudo\`.
   echo
+  echo "Defaults:${USER} !authenticate"
   echo "${USER} ALL=(ALL) ALL"
   echo
 
